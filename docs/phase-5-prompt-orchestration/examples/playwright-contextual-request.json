@@ -1,0 +1,44 @@
+{
+  "story_id": "story_demo_001",
+  "model": "gpt-4.1",
+  "context_bundle": {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "context_build",
+    "stage_version": "v1",
+    "story_id": "story_demo_001",
+    "target_url": "http://localhost:3000",
+    "test_cases": [
+      {
+        "id": "TC001",
+        "title": "Login with valid credentials",
+        "test_type": "positive",
+        "preconditions": ["Registered account exists"],
+        "steps": [
+          {"number": 1, "action": "Open Signup/Login page"},
+          {"number": 2, "action": "Enter email and password"},
+          {"number": 3, "action": "Click Login"}
+        ],
+        "expected_result": "User is logged in and account state is visible."
+      }
+    ],
+    "relevant_pages": [
+      {
+        "url": "http://localhost:3000/login",
+        "elements": [
+          {"type": "input", "text": "Email Address", "selector": "input[data-qa='login-email']"},
+          {"type": "input", "text": "Password", "selector": "input[data-qa='login-password']"},
+          {"type": "button", "text": "Login", "selector": "button[data-qa='login-button']"}
+        ]
+      }
+    ],
+    "token_budget": {
+      "max_input_tokens": 6000,
+      "estimated_input_tokens": 980
+    },
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:13Z",
+      "completed_at": "2026-03-23T10:00:13Z"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "run_id": "run_20260323_001",
+  "contract_version": "v1",
+  "stage": "script_validation",
+  "stage_version": "v1",
+  "is_valid": true,
+  "checks": [
+    {"name": "python_ast_parse", "status": "passed", "detail": "AST parse successful"},
+    {"name": "required_imports", "status": "passed", "detail": "Playwright imports present"},
+    {"name": "selector_presence", "status": "passed", "detail": "All selectors found in crawl snapshot"}
+  ],
+  "errors": [],
+  "timestamps": {
+    "started_at": "2026-03-23T10:00:25Z",
+    "completed_at": "2026-03-23T10:00:26Z"
+  }
+}

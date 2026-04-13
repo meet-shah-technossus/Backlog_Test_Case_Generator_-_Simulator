@@ -1,0 +1,197 @@
+.queueops-wrap {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.queueops-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.queueops-head h3 {
+  font-size: 0.95rem;
+  color: var(--app-text);
+}
+
+.queueops-head p {
+  font-size: 12px;
+  color: var(--app-muted);
+}
+
+.queueops-controls {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.queueops-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.queueops-card {
+  border: 1px solid var(--app-border);
+  border-radius: 0.7rem;
+  padding: 0.65rem;
+  background: color-mix(in srgb, var(--app-surface) 90%, transparent);
+}
+
+.queueops-card-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--app-muted);
+  margin-bottom: 0.4rem;
+}
+
+.queueops-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--app-text) 86%, transparent);
+}
+
+.queueops-label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 11px;
+  color: var(--app-muted);
+}
+
+.queueops-input {
+  width: 100%;
+  border: 1px solid var(--app-border);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--app-text) 90%, transparent);
+  background: color-mix(in srgb, var(--app-surface) 94%, transparent);
+}
+
+.queueops-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.queueops-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 11px;
+  border-radius: 999px;
+  border: 1px solid var(--app-border);
+  padding: 0.24rem 0.58rem;
+  color: color-mix(in srgb, var(--app-text) 84%, transparent);
+  background: color-mix(in srgb, var(--app-surface) 88%, transparent);
+}
+
+.queueops-list {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.queueops-security-list {
+  margin-top: 0.5rem;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.queueops-item {
+  border: 1px solid var(--app-border);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  background: color-mix(in srgb, var(--app-surface) 92%, transparent);
+}
+
+.queueops-actions-inline {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.queueops-item strong {
+  font-size: 11px;
+  color: color-mix(in srgb, var(--app-text) 85%, transparent);
+}
+
+.queueops-meta {
+  font-size: 10px;
+  color: var(--app-muted);
+  margin-top: 0.1rem;
+}
+
+.queueops-empty {
+  border: 1px dashed var(--app-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 12px;
+  color: var(--app-muted);
+}
+
+.queueops-footnote {
+  font-size: 11px;
+  color: var(--app-muted);
+}
+
+.queueops-error {
+  border: 1px solid color-mix(in srgb, var(--accent-red) 45%, var(--app-border));
+  color: color-mix(in srgb, var(--accent-red) 85%, white 15%);
+  background: color-mix(in srgb, var(--accent-red) 12%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 12px;
+}
+
+.queueops-badge {
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 0.14rem 0.5rem;
+  border: 1px solid var(--app-border);
+}
+
+.queueops-badge.good {
+  color: #0f9f66;
+  border-color: color-mix(in srgb, #0f9f66 45%, var(--app-border));
+  background: color-mix(in srgb, #0f9f66 14%, transparent);
+}
+
+.queueops-badge.warn {
+  color: #b87e0f;
+  border-color: color-mix(in srgb, #b87e0f 45%, var(--app-border));
+  background: color-mix(in srgb, #b87e0f 14%, transparent);
+}
+
+.queueops-badge.bad {
+  color: #b63434;
+  border-color: color-mix(in srgb, #b63434 45%, var(--app-border));
+  background: color-mix(in srgb, #b63434 14%, transparent);
+}
+
+@media (max-width: 1024px) {
+  .queueops-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .queueops-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .queueops-filters {
+    grid-template-columns: 1fr;
+  }
+}

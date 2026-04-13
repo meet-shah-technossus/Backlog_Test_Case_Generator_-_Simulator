@@ -1,0 +1,32 @@
+{
+  "run_id": "run_20260323_001",
+  "contract_version": "v1",
+  "stage": "execution",
+  "stage_version": "v1",
+  "story_id": "story_demo_001",
+  "status": "completed",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "duration_ms": 42100,
+  "video_path": "/artifacts/run_20260323_001/session.webm",
+  "results": [
+    {
+      "test_case_id": "TC001",
+      "title": "Register user with valid details",
+      "status": "passed",
+      "duration_ms": 21000
+    },
+    {
+      "test_case_id": "TC002",
+      "title": "Login with valid credentials",
+      "status": "passed",
+      "duration_ms": 18000
+    }
+  ],
+  "timestamps": {
+    "started_at": "2026-03-23T10:00:27Z",
+    "completed_at": "2026-03-23T10:01:09Z"
+  }
+}

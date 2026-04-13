@@ -1,0 +1,31 @@
+{
+  "run_id": "run_20260323_001",
+  "contract_version": "v1",
+  "stage": "context_build",
+  "stage_version": "v1",
+  "story_id": "story_demo_001",
+  "target_url": "http://localhost:3000",
+  "test_cases": [
+    {"id": "TC001", "title": "Register user with valid details"},
+    {"id": "TC002", "title": "Login with valid credentials"}
+  ],
+  "relevant_pages": [
+    {
+      "url": "/login",
+      "elements": [
+        {"type": "input", "text": "Name", "selector": "input[data-qa='signup-name']"},
+        {"type": "button", "text": "Signup", "selector": "button[data-qa='signup-button']"},
+        {"type": "input", "text": "Email Address", "selector": "input[data-qa='login-email']"},
+        {"type": "button", "text": "Login", "selector": "button[data-qa='login-button']"}
+      ]
+    }
+  ],
+  "token_budget": {
+    "max_input_tokens": 12000,
+    "estimated_input_tokens": 4200
+  },
+  "timestamps": {
+    "started_at": "2026-03-23T10:00:19Z",
+    "completed_at": "2026-03-23T10:00:20Z"
+  }
+}

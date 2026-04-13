@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1/stage_event.schema.json",
+  "title": "StageEvent",
+  "type": "object",
+  "required": [
+    "run_id",
+    "contract_version",
+    "stage",
+    "stage_version",
+    "status",
+    "timestamps"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "contract_version": {"type": "string", "const": "v1"},
+    "stage": {
+      "type": "string",
+      "enum": [
+        "test_case_generation",
+        "crawl",
+        "context_build",
+        "script_generation",
+        "script_validation",
+        "execution"
+      ]
+    },
+    "stage_version": {"type": "string"},
+    "status": {"type": "string", "enum": ["started", "completed", "failed"]},
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {"type": "string"},
+        "message": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "timestamps": {
+      "type": "object",
+      "required": ["started_at", "completed_at"],
+      "properties": {
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

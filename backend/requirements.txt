@@ -1,0 +1,32 @@
+# =============================================================================
+# Backend Python Dependencies
+# Install with: pip install -r requirements.txt
+# =============================================================================
+
+# Web framework
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# Environment variable management
+python-dotenv==1.0.1
+
+# HTTP client (for API calls and Backlog API)
+httpx==0.27.2
+
+# OpenAI API client
+openai==1.68.2
+
+# WebSockets (for streaming Playwright logs to frontend)
+websockets==13.1
+
+# Playwright (browser automation)
+playwright==1.47.0
+
+# Data validation
+pydantic==2.9.2
+
+# Async support utilities
+anyio==4.6.0
+
+# Prompt templating
+jinja2==3.1.4

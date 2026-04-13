@@ -1,0 +1,39 @@
+# ── Environment & Secrets ─────────────────────────────────────
+.env
+*.env
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# ── Node / Frontend ───────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.local
+
+# ── Generated Test Files ──────────────────────────────────────
+tests/generated/*.py
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ───────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+
+# ── Large files ───────────────────────────────────────────────
+backend.zip
+backend_parts/

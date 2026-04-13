@@ -1,0 +1,74 @@
+[
+  {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "test_case_generation",
+    "stage_version": "v1",
+    "status": "completed",
+    "metrics": {"test_case_count": 2},
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:02Z",
+      "completed_at": "2026-03-23T10:00:09Z"
+    }
+  },
+  {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "crawl",
+    "stage_version": "v1",
+    "status": "completed",
+    "metrics": {"pages": 2, "interactive_elements": 5},
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:10Z",
+      "completed_at": "2026-03-23T10:00:18Z"
+    }
+  },
+  {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "context_build",
+    "stage_version": "v1",
+    "status": "completed",
+    "metrics": {"estimated_input_tokens": 4200},
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:19Z",
+      "completed_at": "2026-03-23T10:00:20Z"
+    }
+  },
+  {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "script_generation",
+    "stage_version": "v1",
+    "status": "completed",
+    "metrics": {"script_chars": 460},
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:21Z",
+      "completed_at": "2026-03-23T10:00:24Z"
+    }
+  },
+  {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "script_validation",
+    "stage_version": "v1",
+    "status": "completed",
+    "metrics": {"checks_passed": 3, "checks_failed": 0},
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:25Z",
+      "completed_at": "2026-03-23T10:00:26Z"
+    }
+  },
+  {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "execution",
+    "stage_version": "v1",
+    "status": "completed",
+    "metrics": {"passed": 2, "failed": 0},
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:27Z",
+      "completed_at": "2026-03-23T10:01:09Z"
+    }
+  }
+]

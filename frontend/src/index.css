@@ -1,0 +1,70 @@
+/* Phase 7 — Full dashboard styles built here.
+   Base resets and Tailwind directives below. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --app-bg: #0a0e1a;
+  --app-surface: rgba(16, 24, 42, 0.88);
+  --app-border: rgba(255, 255, 255, 0.1);
+  --app-text: rgba(255, 255, 255, 0.92);
+  --app-muted: rgba(255, 255, 255, 0.58);
+  --app-header-bg: rgba(10, 14, 26, 0.8);
+  --accent-blue: #3b82f6;
+  --accent-violet: #8b5cf6;
+  --accent-teal: #14b8a6;
+}
+
+html[data-theme='light'] {
+  --app-bg: #f3f6fb;
+  --app-surface: rgba(255, 255, 255, 0.92);
+  --app-border: rgba(20, 24, 36, 0.12);
+  --app-text: rgba(18, 24, 38, 0.95);
+  --app-muted: rgba(44, 56, 80, 0.7);
+  --app-header-bg: rgba(255, 255, 255, 0.92);
+}
+
+@layer base {
+  html, body {
+    @apply antialiased;
+    background: var(--app-bg);
+    color: var(--app-text);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-white/10 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-white/20; }
+
+  * { @apply border-white/10; }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 via-violet-400 to-teal-400 bg-clip-text text-transparent;
+  }
+  /* Shimmer skeleton loading placeholder */
+  .skeleton {
+    @apply rounded-lg;
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 25%,
+      rgba(255,255,255,0.09) 50%,
+      rgba(255,255,255,0.03) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+}
+
+/* Shimmer keyframe (outside @layer so it's always available) */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}

@@ -1,0 +1,51 @@
+{
+  "run_id": "run_20260323_001",
+  "contract_version": "v1",
+  "stage": "crawl",
+  "stage_version": "v1",
+  "base_url": "http://localhost:3000",
+  "pages": [
+    {
+      "url": "/",
+      "title": "Automation Exercise",
+      "elements": [
+        {
+          "type": "link",
+          "text": "Signup / Login",
+          "selector": "a[href='/login']",
+          "attributes": {"href": "/login"},
+          "visible": true,
+          "interactive": true
+        }
+      ],
+      "links": ["/login", "/products", "/view_cart"]
+    },
+    {
+      "url": "/login",
+      "title": "Signup / Login",
+      "elements": [
+        {
+          "type": "input",
+          "text": "Name",
+          "selector": "input[data-qa='signup-name']",
+          "attributes": {"name": "name"},
+          "visible": true,
+          "interactive": true
+        },
+        {
+          "type": "button",
+          "text": "Signup",
+          "selector": "button[data-qa='signup-button']",
+          "attributes": {},
+          "visible": true,
+          "interactive": true
+        }
+      ],
+      "links": ["/"]
+    }
+  ],
+  "timestamps": {
+    "started_at": "2026-03-23T10:00:10Z",
+    "completed_at": "2026-03-23T10:00:18Z"
+  }
+}

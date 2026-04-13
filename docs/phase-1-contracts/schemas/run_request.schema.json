@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1/run_request.schema.json",
+  "title": "RunRequest",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "run_id",
+    "story_id",
+    "target_url",
+    "model",
+    "execution_context"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]{8,64}$"
+    },
+    "story_id": {"type": "string", "minLength": 1},
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "target_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "model": {
+      "type": "object",
+      "required": ["provider", "name"],
+      "properties": {
+        "provider": {"type": "string", "enum": ["openai"]},
+        "name": {"type": "string"},
+        "temperature": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "execution_context": {
+      "$ref": "execution_context.schema.json"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "requested_by": {"type": "string"},
+        "requested_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

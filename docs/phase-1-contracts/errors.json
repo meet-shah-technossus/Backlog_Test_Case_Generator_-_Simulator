@@ -1,0 +1,65 @@
+{
+  "contract_version": "v1",
+  "errors": [
+    {
+      "code": "INVALID_EXECUTION_CONTEXT",
+      "http_status": 400,
+      "message": "Execution context is invalid or incomplete."
+    },
+    {
+      "code": "INVALID_TARGET_URL",
+      "http_status": 400,
+      "message": "Target URL must be absolute and policy-compliant."
+    },
+    {
+      "code": "TARGET_NOT_IN_ALLOWLIST",
+      "http_status": 403,
+      "message": "Target host is not in the configured domain allowlist."
+    },
+    {
+      "code": "CRAWL_TIMEOUT",
+      "http_status": 504,
+      "message": "Crawler did not finish within configured timeout."
+    },
+    {
+      "code": "CRAWL_FAILED",
+      "http_status": 502,
+      "message": "Crawler failed to collect usable page data."
+    },
+    {
+      "code": "CONTEXT_TOO_LARGE",
+      "http_status": 413,
+      "message": "Compiled LLM context exceeds token or size budget."
+    },
+    {
+      "code": "TEST_CASE_GENERATION_FAILED",
+      "http_status": 502,
+      "message": "Test case generation stage failed."
+    },
+    {
+      "code": "SCRIPT_GENERATION_FAILED",
+      "http_status": 502,
+      "message": "Script generation stage failed."
+    },
+    {
+      "code": "SCRIPT_SYNTAX_INVALID",
+      "http_status": 422,
+      "message": "Generated script has syntax errors."
+    },
+    {
+      "code": "SCRIPT_SELECTOR_MISMATCH",
+      "http_status": 422,
+      "message": "Generated script references unknown or unavailable selectors."
+    },
+    {
+      "code": "EXECUTION_FAILED",
+      "http_status": 500,
+      "message": "Playwright execution failed."
+    },
+    {
+      "code": "RUN_ABORTED_BY_POLICY",
+      "http_status": 409,
+      "message": "Run was blocked by policy or safety checks."
+    }
+  ]
+}

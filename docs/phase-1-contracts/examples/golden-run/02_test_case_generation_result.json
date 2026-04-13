@@ -1,0 +1,41 @@
+{
+  "run_id": "run_20260323_001",
+  "contract_version": "v1",
+  "stage": "test_case_generation",
+  "stage_version": "v1",
+  "story_id": "story_demo_001",
+  "model": {
+    "provider": "openai",
+    "name": "gpt-4.1"
+  },
+  "test_cases": [
+    {
+      "id": "TC001",
+      "title": "Register user with valid details",
+      "test_type": "positive",
+      "preconditions": ["User is on home page"],
+      "steps": [
+        {"number": 1, "action": "Open Signup/Login page"},
+        {"number": 2, "action": "Enter valid signup information"},
+        {"number": 3, "action": "Submit account creation form"}
+      ],
+      "expected_result": "Account is created and user sees logged-in confirmation."
+    },
+    {
+      "id": "TC002",
+      "title": "Login with valid credentials",
+      "test_type": "positive",
+      "preconditions": ["Registered account exists"],
+      "steps": [
+        {"number": 1, "action": "Open Signup/Login page"},
+        {"number": 2, "action": "Enter email and password"},
+        {"number": 3, "action": "Click login button"}
+      ],
+      "expected_result": "User is authenticated and Logged in as text is visible."
+    }
+  ],
+  "timestamps": {
+    "started_at": "2026-03-23T10:00:02Z",
+    "completed_at": "2026-03-23T10:00:09Z"
+  }
+}

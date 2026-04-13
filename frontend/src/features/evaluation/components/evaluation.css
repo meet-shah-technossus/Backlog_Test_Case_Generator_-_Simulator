@@ -1,0 +1,201 @@
+.evaluation-board {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.evaluation-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.evaluation-header h3 {
+  font-size: 0.95rem;
+  color: var(--app-text);
+}
+
+.evaluation-header p {
+  font-size: 12px;
+  color: var(--app-muted);
+}
+
+.evaluation-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 11px;
+  border-radius: 999px;
+  border: 1px solid var(--app-border);
+  padding: 0.24rem 0.58rem;
+  color: color-mix(in srgb, var(--app-text) 84%, transparent);
+  background: color-mix(in srgb, var(--app-surface) 88%, transparent);
+}
+
+.evaluation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.evaluation-card {
+  border: 1px solid var(--app-border);
+  border-radius: 0.7rem;
+  padding: 0.65rem;
+  background: color-mix(in srgb, var(--app-surface) 90%, transparent);
+}
+
+.evaluation-card.wide {
+  grid-column: span 1;
+}
+
+.evaluation-card-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--app-muted);
+  margin-bottom: 0.45rem;
+}
+
+.evaluation-metric-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--app-text) 86%, transparent);
+}
+
+.evaluation-badge {
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 0.14rem 0.5rem;
+  border: 1px solid var(--app-border);
+}
+
+.evaluation-badge.good {
+  color: #0f9f66;
+  border-color: color-mix(in srgb, #0f9f66 45%, var(--app-border));
+  background: color-mix(in srgb, #0f9f66 14%, transparent);
+}
+
+.evaluation-badge.warn {
+  color: #b87e0f;
+  border-color: color-mix(in srgb, #b87e0f 45%, var(--app-border));
+  background: color-mix(in srgb, #b87e0f 14%, transparent);
+}
+
+.evaluation-badge.bad {
+  color: #b63434;
+  border-color: color-mix(in srgb, #b63434 45%, var(--app-border));
+  background: color-mix(in srgb, #b63434 14%, transparent);
+}
+
+.evaluation-rollout-status {
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 0.14rem 0.5rem;
+  border: 1px solid var(--app-border);
+  color: var(--app-muted);
+}
+
+.evaluation-rollout-status.ready {
+  color: #0f9f66;
+  border-color: color-mix(in srgb, #0f9f66 45%, var(--app-border));
+  background: color-mix(in srgb, #0f9f66 14%, transparent);
+}
+
+.evaluation-rollout-status.warning {
+  color: #b87e0f;
+  border-color: color-mix(in srgb, #b87e0f 45%, var(--app-border));
+  background: color-mix(in srgb, #b87e0f 14%, transparent);
+}
+
+.evaluation-charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.evaluation-chart-card {
+  border: 1px solid var(--app-border);
+  border-radius: 0.7rem;
+  padding: 0.6rem;
+  background: color-mix(in srgb, var(--app-surface) 88%, transparent);
+}
+
+.evaluation-chart-title {
+  font-size: 11px;
+  color: color-mix(in srgb, var(--app-text) 82%, transparent);
+  margin-bottom: 0.35rem;
+}
+
+.evaluation-chart {
+  width: 100%;
+  height: 78px;
+}
+
+.evaluation-chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--app-muted);
+}
+
+.evaluation-json {
+  margin: 0;
+  max-height: 220px;
+  overflow: auto;
+  font-size: 10px;
+  color: color-mix(in srgb, var(--app-text) 74%, transparent);
+}
+
+.evaluation-queue-list {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.evaluation-queue-item {
+  border: 1px solid var(--app-border);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  background: color-mix(in srgb, var(--app-surface) 92%, transparent);
+}
+
+.evaluation-queue-item strong {
+  font-size: 11px;
+  color: color-mix(in srgb, var(--app-text) 85%, transparent);
+}
+
+.evaluation-queue-meta {
+  font-size: 10px;
+  color: var(--app-muted);
+  margin-top: 0.1rem;
+}
+
+.evaluation-error {
+  border: 1px solid color-mix(in srgb, var(--accent-red) 45%, var(--app-border));
+  color: color-mix(in srgb, var(--accent-red) 85%, white 15%);
+  background: color-mix(in srgb, var(--accent-red) 12%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 12px;
+}
+
+@media (max-width: 1024px) {
+  .evaluation-grid,
+  .evaluation-charts {
+    grid-template-columns: 1fr;
+  }
+}

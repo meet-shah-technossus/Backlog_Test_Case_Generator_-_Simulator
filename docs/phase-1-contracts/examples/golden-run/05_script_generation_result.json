@@ -1,0 +1,18 @@
+{
+  "run_id": "run_20260323_001",
+  "contract_version": "v1",
+  "stage": "script_generation",
+  "stage_version": "v1",
+  "language": "python",
+  "framework": "playwright",
+  "model": {
+    "provider": "openai",
+    "name": "gpt-4.1",
+    "temperature": 0.1
+  },
+  "script": "# [Story: Core journeys]\\nimport pytest\\nfrom playwright.async_api import Page, expect\\n\\nasync def test_tc001_register_user_with_valid_details(page: Page) -> None:\\n    await page.goto('http://localhost:3000/login')\\n    await page.fill(\"input[data-qa='signup-name']\", 'Demo User')\\n    await page.click(\"button[data-qa='signup-button']\")\\n    await expect(page).to_have_url(/.*signup.*/)",
+  "timestamps": {
+    "started_at": "2026-03-23T10:00:21Z",
+    "completed_at": "2026-03-23T10:00:24Z"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1/test_case_generation_result.schema.json",
+  "title": "TestCaseGenerationResult",
+  "type": "object",
+  "required": [
+    "run_id",
+    "contract_version",
+    "stage",
+    "stage_version",
+    "story_id",
+    "test_cases",
+    "timestamps"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "contract_version": {"type": "string", "const": "v1"},
+    "stage": {"type": "string", "const": "test_case_generation"},
+    "stage_version": {"type": "string"},
+    "story_id": {"type": "string"},
+    "test_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "test_type", "preconditions", "steps", "expected_result"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^TC[0-9]{3}$"},
+          "title": {"type": "string"},
+          "test_type": {"type": "string", "enum": ["positive", "negative", "edge"]},
+          "preconditions": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["number", "action"],
+              "properties": {
+                "number": {"type": "integer", "minimum": 1},
+                "action": {"type": "string"}
+              },
+              "additionalProperties": false
+            },
+            "minItems": 3
+          },
+          "expected_result": {"type": "string"}
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "provider": {"type": "string"},
+        "name": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "timestamps": {
+      "type": "object",
+      "required": ["started_at", "completed_at"],
+      "properties": {
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

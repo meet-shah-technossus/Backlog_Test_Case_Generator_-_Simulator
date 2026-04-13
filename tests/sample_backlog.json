@@ -1,0 +1,241 @@
+{
+  "epics": [
+    {
+      "id": "epic_multi_site_001",
+      "title": "Ecommerce and Marketplace Website Automation",
+      "description": "Large cross-site regression coverage for major ecommerce flows.",
+      "features": [
+        {
+          "id": "feat_multi_site_shop_001",
+          "title": "Shopping Discovery and Cart Management",
+          "description": "Search, filter, detail page validation, cart and wishlist coverage.",
+          "user_stories": [
+            {
+              "id": "story_site_001",
+              "title": "Amazon public shopping flow validation",
+              "description": "Validate key anonymous buyer flows on amazon.com.",
+              "acceptance_criteria": [
+                "Open homepage and verify global search box is visible and enabled",
+                "Search for 'wireless mouse' and verify result list count is greater than zero",
+                "Apply a category or brand filter and verify selected filter chip is displayed",
+                "Open first product detail page and verify title, price block, and main image are present",
+                "Change quantity selector if available and verify selection persists",
+                "Add product to cart if available and verify cart badge increases"
+              ]
+            },
+            {
+              "id": "story_site_002",
+              "title": "eBay search and sort behavior",
+              "description": "Validate search result sorting and item page consistency on ebay.com.",
+              "acceptance_criteria": [
+                "Open ebay homepage and verify search input and search button are visible",
+                "Search for 'mechanical keyboard' and validate results render without error banner",
+                "Apply sort by price or best match and verify active sort selection is reflected in UI",
+                "Open a result item and verify item title and price are displayed",
+                "Validate seller information section is present on item page",
+                "Navigate back to results and verify previous query remains in search box"
+              ]
+            },
+            {
+              "id": "story_site_003",
+              "title": "Etsy catalog exploration",
+              "description": "Validate handmade marketplace browsing on etsy.com.",
+              "acceptance_criteria": [
+                "Load Etsy homepage and verify top navigation categories are displayed",
+                "Search for 'ceramic mug' and verify at least one listing card is visible",
+                "Open a listing and verify listing title, price, and shop name are present",
+                "Validate image gallery supports next or thumbnail interaction",
+                "If personalization or options exist, select one option and verify UI updates",
+                "Attempt to add to cart and verify action feedback is displayed"
+              ]
+            },
+            {
+              "id": "story_site_004",
+              "title": "Walmart storefront smoke coverage",
+              "description": "Validate key homepage-to-product journey on walmart.com.",
+              "acceptance_criteria": [
+                "Open Walmart homepage and verify location or delivery banner loads",
+                "Search for 'air fryer' and verify result grid appears",
+                "Use price filter range and verify result count or products update",
+                "Open first product and verify ratings and review count area is visible",
+                "Check availability section for shipping or pickup messaging",
+                "Add to cart if enabled and confirm cart confirmation UI appears"
+              ]
+            },
+            {
+              "id": "story_site_005",
+              "title": "Target product browsing regression",
+              "description": "Validate category and product detail rendering on target.com.",
+              "acceptance_criteria": [
+                "Open Target homepage and verify global nav loads",
+                "Search for 'coffee maker' and verify results are listed",
+                "Apply rating or shipping filter and verify filter token appears",
+                "Open a product detail page and verify product title and price render",
+                "Validate pickup or shipping options section exists",
+                "Use breadcrumb to return and confirm user remains in same search context"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "epic_multi_site_002",
+      "title": "Travel, Hospitality, and Content Platform Automation",
+      "description": "User journey coverage for booking and content-consumption websites.",
+      "features": [
+        {
+          "id": "feat_multi_site_travel_001",
+          "title": "Search, Results, and Detail Validation",
+          "description": "Validate date-based search forms and content details across travel and media sites.",
+          "user_stories": [
+            {
+              "id": "story_site_006",
+              "title": "Booking.com destination search flow",
+              "description": "Validate hotel destination search behavior on booking.com.",
+              "acceptance_criteria": [
+                "Open Booking homepage and verify destination input is present",
+                "Enter destination city and select autocomplete option",
+                "Set check-in and check-out dates and verify summary reflects selected dates",
+                "Run search and verify property result cards are displayed",
+                "Apply one filter such as price, stars, or review score and verify active filter appears",
+                "Open a property detail page and verify room options or booking CTA is visible"
+              ]
+            },
+            {
+              "id": "story_site_007",
+              "title": "Airbnb stay discovery flow",
+              "description": "Validate listing discovery and detail navigation on airbnb.com.",
+              "acceptance_criteria": [
+                "Open Airbnb homepage and verify stay search controls are visible",
+                "Enter destination and select valid date range",
+                "Submit search and verify map or listing cards render",
+                "Apply one filter (price/type/amenities) and verify result update",
+                "Open a listing and verify host section and amenities section are visible",
+                "Validate reservation call-to-action area is present"
+              ]
+            },
+            {
+              "id": "story_site_008",
+              "title": "Tripadvisor attraction discovery",
+              "description": "Validate search and detail content on tripadvisor.com.",
+              "acceptance_criteria": [
+                "Open Tripadvisor homepage and verify search field is displayed",
+                "Search for a city attraction and verify results page loads",
+                "Filter by category if available and confirm selection in UI",
+                "Open a result detail page and verify title and rating are shown",
+                "Validate reviews section renders with at least one review block",
+                "Navigate photos tab and verify gallery content is visible"
+              ]
+            },
+            {
+              "id": "story_site_009",
+              "title": "Wikipedia article navigation and search",
+              "description": "Validate article lookup and navigation on wikipedia.org.",
+              "acceptance_criteria": [
+                "Open Wikipedia homepage and verify search input is focused or visible",
+                "Search for 'Software testing' and verify article page opens",
+                "Validate article heading and first paragraph are visible",
+                "Use table of contents link and verify viewport navigates to section",
+                "Open a referenced internal link and verify new article heading updates",
+                "Return back and verify original article state"
+              ]
+            },
+            {
+              "id": "story_site_010",
+              "title": "IMDB title page information checks",
+              "description": "Validate movie/series detail page content on imdb.com.",
+              "acceptance_criteria": [
+                "Open IMDB homepage and verify search bar is present",
+                "Search for a known title and verify top results appear",
+                "Open title detail page and verify title header and year are visible",
+                "Validate rating section and vote count are shown",
+                "Open cast section and verify at least one cast card appears",
+                "Navigate to user reviews and verify review blocks are rendered"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "epic_multi_site_003",
+      "title": "Developer, Learning, and Utility Website Automation",
+      "description": "Coverage for docs/search/community and accountless productivity experiences.",
+      "features": [
+        {
+          "id": "feat_multi_site_dev_001",
+          "title": "Navigation, Search, and Interaction",
+          "description": "Validate core interactive behavior on developer and learning platforms.",
+          "user_stories": [
+            {
+              "id": "story_site_011",
+              "title": "GitHub repository search",
+              "description": "Validate public repository search and repository page rendering on github.com.",
+              "acceptance_criteria": [
+                "Open GitHub homepage and verify search input is available",
+                "Search for 'playwright' and verify repository results list appears",
+                "Apply language filter if available and verify filter is active",
+                "Open first repository and verify repo title and star section are shown",
+                "Open README tab area and verify markdown content block is rendered",
+                "Open issues tab and verify page loads without access errors"
+              ]
+            },
+            {
+              "id": "story_site_012",
+              "title": "Stack Overflow question discovery",
+              "description": "Validate search and question detail pages on stackoverflow.com.",
+              "acceptance_criteria": [
+                "Open Stack Overflow homepage and verify top search field is visible",
+                "Search for 'python asyncio' and verify question result list appears",
+                "Sort by newest or relevant and verify selected sort state",
+                "Open a question page and verify question title and tags are shown",
+                "Validate answer section renders with one or more answer blocks",
+                "Use share or copy link action and verify action control is present"
+              ]
+            },
+            {
+              "id": "story_site_013",
+              "title": "Medium publication browsing",
+              "description": "Validate content feed and article reading experience on medium.com.",
+              "acceptance_criteria": [
+                "Open Medium homepage and verify main feed items are visible",
+                "Search for topic 'automation testing' and verify relevant stories are listed",
+                "Open a story and verify article title and author area are visible",
+                "Scroll article and verify progress indicator or sticky controls update",
+                "Open author profile link and verify author page renders",
+                "Return to feed and confirm prior navigation context"
+              ]
+            },
+            {
+              "id": "story_site_014",
+              "title": "Coursera course search",
+              "description": "Validate search and course preview interactions on coursera.org.",
+              "acceptance_criteria": [
+                "Open Coursera homepage and verify search input is visible",
+                "Search for 'data science' and verify course cards display",
+                "Apply beginner level or language filter and verify active selection",
+                "Open a course detail page and verify syllabus or overview section exists",
+                "Verify enrollment or audit call-to-action is present",
+                "Navigate to instructor section and verify instructor cards are shown"
+              ]
+            },
+            {
+              "id": "story_site_015",
+              "title": "Weather.com location lookup",
+              "description": "Validate location search and forecast panels on weather.com.",
+              "acceptance_criteria": [
+                "Open Weather.com and verify location search control is visible",
+                "Search for a city and verify selected location updates in header",
+                "Validate current weather panel shows temperature and condition",
+                "Open hourly forecast and verify timeline entries are rendered",
+                "Open 10-day forecast and verify day cards are visible",
+                "Change to another location and verify forecast content refreshes"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

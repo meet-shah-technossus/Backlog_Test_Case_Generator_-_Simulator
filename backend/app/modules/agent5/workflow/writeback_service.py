@@ -1,0 +1,225 @@
+from __future__ import annotations
+
+import hashlib
+import json
+from datetime import datetime, timezone
+
+from app.domain.models import AcceptanceCriterion, BacklogData, Epic, Feature, UserStory
+from app.modules.agent1.mcp.backlog_store_mcp_service import Agent1BacklogStoreMCPService
+from app.modules.agent5.db.run_repository import Agent5RunRepository
+from app.modules.agent5.workflow.orchestrator_service import Agent5OrchestratorService
+from app.modules.agent5.workflow.persistence_service import Agent5PersistenceService
+
+
+class Agent5WritebackService:
+    def __init__(
+        self,
+        run_repo: Agent5RunRepository,
+        persistence_service: Agent5PersistenceService,
+        orchestrator_service: Agent5OrchestratorService,
+        backlog_store: Agent1BacklogStoreMCPService | None = None,
+    ) -> None:
+        self._run_repo = run_repo
+        self._persistence_service = persistence_service
+        self._orchestrator_service = orchestrator_service
+        self._backlog_store = backlog_store or Agent1BacklogStoreMCPService()
+
+    def generate_writeback(
+        self,
+        *,
+        agent5_run_id: str,
+        actor: str,
+        idempotency_key: str | None,
+        force_regenerate: bool = False,
+    ) -> dict:
+        run = self._run_repo.get_run(agent5_run_id)
+        if not run:
+            raise ValueError(f"Agent5 run '{agent5_run_id}' not found")
+
+        state = str(run.get("state") or "")
+        if state not in {"gate7_approved", "writeback_pending", "gate8_pending"}:
+            raise ValueError("Stage8 writeback requires state gate7_approved, writeback_pending, or gate8_pending")
+
+        stage7_analysis = run.get("stage7_analysis") if isinstance(run.get("stage7_analysis"), dict) else {}
+        if not stage7_analysis:
+            raise ValueError("Stage8 writeback requires stage7_analysis artifact")
+
+        gate7_decision = run.get("gate7_decision") if isinstance(run.get("gate7_decision"), dict) else {}
+        gate7_status = str(gate7_decision.get("decision") or "").strip().lower()
+        if gate7_status != "approve":
+            raise ValueError("Stage8 writeback is blocked until Gate7 decision is approve")
+
+        resolved_idempotency_key = self._resolve_idempotency_key(
+            agent5_run_id=agent5_run_id,
+            stage7_analysis=stage7_analysis,
+            idempotency_key=idempotency_key,
+        )
+
+        existing_writeback = run.get("stage8_writeback") if isinstance(run.get("stage8_writeback"), dict) else {}
+        if existing_writeback and not force_regenerate:
+            existing_key = str(existing_writeback.get("idempotency_key") or "").strip()
+            if existing_key == resolved_idempotency_key:
+                return self._persistence_service.get_run_snapshot(agent5_run_id)
+
+        if state == "gate7_approved":
+            self._orchestrator_service.apply_command(
+                agent5_run_id=agent5_run_id,
+                command="start_writeback",
+                actor=actor,
+                context={"phase": "A5.9"},
+            )
+            run = self._run_repo.get_run(agent5_run_id) or run
+
+        writeback_payload = self._build_writeback_payload(
+            run=run,
+            actor=actor,
+            idempotency_key=resolved_idempotency_key,
+            stage7_analysis=stage7_analysis,
+        )
+
+        self._persistence_service.persist_stage8_writeback(
+            agent5_run_id=agent5_run_id,
+            writeback=writeback_payload,
+            actor=actor,
+        )
+
+        run_after_persist = self._run_repo.get_run(agent5_run_id) or run
+        if str(run_after_persist.get("state") or "") == "writeback_pending":
+            return self._orchestrator_service.apply_command(
+                agent5_run_id=agent5_run_id,
+                command="submit_gate8",
+                actor=actor,
+                context={
+                    "phase": "A5.9",
+                    "idempotency_key": resolved_idempotency_key,
+                },
+            )
+        return self._persistence_service.get_run_snapshot(agent5_run_id)
+
+    def _build_writeback_payload(
+        self,
+        *,
+        run: dict,
+        actor: str,
+        idempotency_key: str,
+        stage7_analysis: dict,
+    ) -> dict:
+        agent5_run_id = str(run.get("agent5_run_id") or "")
+        severity = str(stage7_analysis.get("severity") or "unknown")
+        probable_cause = str(stage7_analysis.get("probable_cause") or "Unspecified")
+        remediation = stage7_analysis.get("remediation") if isinstance(stage7_analysis.get("remediation"), list) else []
+        summary = stage7_analysis.get("summary") if isinstance(stage7_analysis.get("summary"), dict) else {}
+
+        backlog_item_id = self._backlog_item_id(agent5_run_id=agent5_run_id, idempotency_key=idempotency_key)
+        story_title = f"[AUTO-BUG][{severity.upper()}] Agent5 run {agent5_run_id[:8]} failure"
+        story_description = (
+            f"Generated by Agent5 Stage8 writeback.\\n"
+            f"Probable cause: {probable_cause}\\n"
+            f"Summary: {json.dumps(summary, sort_keys=True)}"
+        )
+
+        writeback_plan = {
+            "action": "upsert_backlog_bug",
+            "source": "agent5_stage8",
+            "agent5_run_id": agent5_run_id,
+            "severity": severity,
+            "probable_cause": probable_cause,
+            "remediation": remediation,
+        }
+
+        request_snapshot = {
+            "backlog_item_id": backlog_item_id,
+            "story_title": story_title,
+            "story_description": story_description,
+            "acceptance_criteria": [
+                f"Validate remediation: {item}" for item in remediation[:3]
+            ] or ["Validate root cause and apply corrective fix"],
+            "source_type": "agent5_writeback",
+            "source_ref": idempotency_key,
+        }
+
+        self._upsert_backlog_item(request_snapshot=request_snapshot)
+
+        response_snapshot = {
+            "status": "upserted",
+            "backlog_item_id": backlog_item_id,
+            "source_type": "agent5_writeback",
+            "source_ref": idempotency_key,
+            "updated_by": actor,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        }
+
+        stable_payload = {
+            "writeback_plan": writeback_plan,
+            "request_snapshot": request_snapshot,
+            "response_snapshot": response_snapshot,
+            "idempotency_key": idempotency_key,
+            "phase": "A5.9",
+        }
+        checksum = hashlib.sha256(
+            json.dumps(stable_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+
+        stable_payload["checksum"] = checksum
+        return stable_payload
+
+    def _upsert_backlog_item(self, *, request_snapshot: dict) -> None:
+        backlog_item_id = str(request_snapshot.get("backlog_item_id") or "")
+        story_title = str(request_snapshot.get("story_title") or "Generated Agent5 bug")
+        story_description = str(request_snapshot.get("story_description") or "")
+        criteria = request_snapshot.get("acceptance_criteria") if isinstance(request_snapshot.get("acceptance_criteria"), list) else []
+
+        story = UserStory(
+            id=backlog_item_id,
+            title=story_title,
+            description=story_description,
+            acceptance_criteria=[
+                AcceptanceCriterion(
+                    id=f"{backlog_item_id}-ac-{idx + 1}",
+                    text=str(item),
+                    original_text=str(item),
+                )
+                for idx, item in enumerate(criteria)
+            ],
+        )
+        feature = Feature(
+            id="agent5_writeback_feature",
+            title="Agent5 Writeback",
+            description="Auto-managed Stage8 writeback backlog items",
+            user_stories=[story],
+        )
+        epic = Epic(
+            id="agent5_writeback_epic",
+            title="Agent5 Defect Intake",
+            description="Auto-generated defects from Agent5",
+            features=[feature],
+        )
+        backlog = BacklogData(epics=[epic])
+        backlog.compute_totals()
+
+        self._backlog_store.upsert_backlog_items(
+            backlog=backlog,
+            source_type=str(request_snapshot.get("source_type") or "agent5_writeback"),
+            source_ref=str(request_snapshot.get("source_ref") or ""),
+        )
+
+    @staticmethod
+    def _backlog_item_id(*, agent5_run_id: str, idempotency_key: str) -> str:
+        suffix = hashlib.sha256(f"{agent5_run_id}:{idempotency_key}".encode("utf-8")).hexdigest()[:12]
+        return f"AG5-BUG-{suffix}".upper()
+
+    @staticmethod
+    def _resolve_idempotency_key(
+        *,
+        agent5_run_id: str,
+        stage7_analysis: dict,
+        idempotency_key: str | None,
+    ) -> str:
+        provided = str(idempotency_key or "").strip()
+        if provided:
+            return provided
+
+        fingerprint = str(stage7_analysis.get("deterministic_fingerprint") or "").strip()
+        if fingerprint:
+            return f"a59-{agent5_run_id[:8]}-{fingerprint[:16]}"
+        return f"a59-{agent5_run_id[:8]}"

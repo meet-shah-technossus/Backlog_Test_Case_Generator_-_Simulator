@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1/execution_context.schema.json",
+  "title": "ExecutionContext",
+  "type": "object",
+  "required": [
+    "base_url",
+    "environment_type",
+    "browser",
+    "safety"
+  ],
+  "properties": {
+    "base_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "environment_type": {
+      "type": "string",
+      "enum": ["local", "staging", "production"]
+    },
+    "auth": {
+      "type": "object",
+      "required": ["mode"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["none", "basic", "form", "bearer_token"]
+        },
+        "username": {"type": "string"},
+        "password_secret_ref": {"type": "string"},
+        "token_secret_ref": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "browser": {
+      "type": "object",
+      "required": ["headless", "slow_mo_ms", "navigation_timeout_ms"],
+      "properties": {
+        "headless": {"type": "boolean"},
+        "slow_mo_ms": {"type": "integer", "minimum": 0},
+        "navigation_timeout_ms": {"type": "integer", "minimum": 1000},
+        "viewport": {
+          "type": "object",
+          "required": ["width", "height"],
+          "properties": {
+            "width": {"type": "integer", "minimum": 320},
+            "height": {"type": "integer", "minimum": 320}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "safety": {
+      "type": "object",
+      "required": ["domain_allowlist", "max_pages", "max_depth", "crawl_timeout_ms"],
+      "properties": {
+        "domain_allowlist": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "max_pages": {"type": "integer", "minimum": 1, "maximum": 500},
+        "max_depth": {"type": "integer", "minimum": 0, "maximum": 10},
+        "crawl_timeout_ms": {"type": "integer", "minimum": 1000}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1/script_validation_result.schema.json",
+  "title": "ScriptValidationResult",
+  "type": "object",
+  "required": [
+    "run_id",
+    "contract_version",
+    "stage",
+    "stage_version",
+    "is_valid",
+    "checks",
+    "timestamps"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "contract_version": {"type": "string", "const": "v1"},
+    "stage": {"type": "string", "const": "script_validation"},
+    "stage_version": {"type": "string"},
+    "is_valid": {"type": "boolean"},
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "status"],
+        "properties": {
+          "name": {"type": "string"},
+          "status": {"type": "string", "enum": ["passed", "failed", "skipped"]},
+          "detail": {"type": "string"}
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {"type": "string"},
+          "message": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "timestamps": {
+      "type": "object",
+      "required": ["started_at", "completed_at"],
+      "properties": {
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

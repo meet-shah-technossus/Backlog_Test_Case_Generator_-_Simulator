@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1/script_generation_result.schema.json",
+  "title": "ScriptGenerationResult",
+  "type": "object",
+  "required": [
+    "run_id",
+    "contract_version",
+    "stage",
+    "stage_version",
+    "language",
+    "framework",
+    "script",
+    "timestamps"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "contract_version": {"type": "string", "const": "v1"},
+    "stage": {"type": "string", "const": "script_generation"},
+    "stage_version": {"type": "string"},
+    "language": {"type": "string", "const": "python"},
+    "framework": {"type": "string", "const": "playwright"},
+    "script": {"type": "string", "minLength": 1},
+    "model": {
+      "type": "object",
+      "properties": {
+        "provider": {"type": "string"},
+        "name": {"type": "string"},
+        "temperature": {"type": "number"}
+      },
+      "additionalProperties": false
+    },
+    "timestamps": {
+      "type": "object",
+      "required": ["started_at", "completed_at"],
+      "properties": {
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

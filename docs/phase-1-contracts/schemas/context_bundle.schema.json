@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1/context_bundle.schema.json",
+  "title": "ContextBundle",
+  "type": "object",
+  "required": [
+    "run_id",
+    "contract_version",
+    "stage",
+    "stage_version",
+    "story_id",
+    "target_url",
+    "test_cases",
+    "relevant_pages",
+    "timestamps"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "contract_version": {"type": "string", "const": "v1"},
+    "stage": {"type": "string", "const": "context_build"},
+    "stage_version": {"type": "string"},
+    "story_id": {"type": "string"},
+    "target_url": {"type": "string", "format": "uri"},
+    "test_cases": {
+      "type": "array",
+      "items": {"type": "object"},
+      "minItems": 1
+    },
+    "relevant_pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url", "elements"],
+        "properties": {
+          "url": {"type": "string"},
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["type", "text", "selector"],
+              "properties": {
+                "type": {"type": "string"},
+                "text": {"type": "string"},
+                "selector": {"type": "string"}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "token_budget": {
+      "type": "object",
+      "required": ["max_input_tokens", "estimated_input_tokens"],
+      "properties": {
+        "max_input_tokens": {"type": "integer", "minimum": 1000},
+        "estimated_input_tokens": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "timestamps": {
+      "type": "object",
+      "required": ["started_at", "completed_at"],
+      "properties": {
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

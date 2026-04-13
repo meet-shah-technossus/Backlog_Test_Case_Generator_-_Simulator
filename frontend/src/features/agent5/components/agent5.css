@@ -1,0 +1,313 @@
+.agent5-board {
+  display: grid;
+  gap: 12px;
+}
+
+.agent5-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.agent5-panel h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.agent5-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.agent5-grid-two {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.agent5-meta-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.agent5-meta-item {
+  display: grid;
+  gap: 3px;
+}
+
+.agent5-meta-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.agent5-meta-value {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.agent5-panel label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.agent5-panel input,
+.agent5-panel select,
+.agent5-panel textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(5, 10, 20, 0.45);
+  color: rgba(255, 255, 255, 0.95);
+  padding: 8px;
+  font-size: 12px;
+}
+
+.agent5-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.agent5-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.agent5-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.agent5-btn.accent {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.agent5-btn.danger {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+.agent5-btn.ghost {
+  background: transparent;
+}
+
+.agent5-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.agent5-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.62);
+  margin-top: 8px;
+}
+
+.agent5-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.agent5-error {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #fca5a5;
+}
+
+.agent5-muted {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.agent5-script-list {
+  display: grid;
+  gap: 6px;
+  max-height: 230px;
+  overflow: auto;
+  margin-top: 8px;
+  padding-right: 4px;
+}
+
+.agent5-script-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.agent5-script-item input {
+  width: auto;
+}
+
+.agent5-script-item span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.agent5-script-item em {
+  margin-left: auto;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.agent5-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 10px;
+}
+
+.agent5-toggle input {
+  width: auto;
+}
+
+.agent5-stream {
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(5, 10, 20, 0.6);
+  padding: 8px;
+  max-height: 260px;
+  overflow: auto;
+  font-size: 11px;
+  white-space: pre-wrap;
+  color: rgba(226, 232, 240, 0.95);
+}
+
+.agent5-history {
+  margin-top: 10px;
+}
+
+.agent5-history pre {
+  margin-top: 6px;
+  max-height: 150px;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 11px;
+  background: rgba(5, 10, 20, 0.6);
+}
+
+.agent5-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.agent5-pill {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.agent5-badge {
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 0.14rem 0.5rem;
+  border: 1px solid var(--app-border);
+}
+
+.agent5-badge.good {
+  color: #0f9f66;
+  border-color: color-mix(in srgb, #0f9f66 45%, var(--app-border));
+  background: color-mix(in srgb, #0f9f66 14%, transparent);
+}
+
+.agent5-badge.warn {
+  color: #b87e0f;
+  border-color: color-mix(in srgb, #b87e0f 45%, var(--app-border));
+  background: color-mix(in srgb, #b87e0f 14%, transparent);
+}
+
+.agent5-badge.bad {
+  color: #b63434;
+  border-color: color-mix(in srgb, #b63434 45%, var(--app-border));
+  background: color-mix(in srgb, #b63434 14%, transparent);
+}
+
+.agent5-video-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .agent5-grid-two {
+    grid-template-columns: 1fr;
+  }
+}
+
+html[data-theme='light'] .agent5-panel {
+  border-color: var(--app-border);
+  background: color-mix(in srgb, #ffffff 90%, #ecf2fb);
+}
+
+html[data-theme='light'] .agent5-panel h3,
+html[data-theme='light'] .agent5-meta-value,
+html[data-theme='light'] .agent5-script-item span {
+  color: color-mix(in srgb, var(--app-text) 88%, transparent);
+}
+
+html[data-theme='light'] .agent5-meta-label,
+html[data-theme='light'] .agent5-muted,
+html[data-theme='light'] .agent5-note,
+html[data-theme='light'] .agent5-status-row {
+  color: var(--app-muted);
+}
+
+html[data-theme='light'] .agent5-panel input,
+html[data-theme='light'] .agent5-panel select,
+html[data-theme='light'] .agent5-panel textarea,
+html[data-theme='light'] .agent5-stream,
+html[data-theme='light'] .agent5-history pre {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1c2736;
+  border-color: var(--app-border);
+}
+
+html[data-theme='light'] .agent5-script-item,
+html[data-theme='light'] .agent5-pill {
+  border-color: var(--app-border);
+  background: color-mix(in srgb, #ffffff 88%, #edf3fb);
+}

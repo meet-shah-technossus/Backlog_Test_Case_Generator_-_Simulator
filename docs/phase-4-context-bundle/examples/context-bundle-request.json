@@ -1,0 +1,53 @@
+{
+  "story_id": "story_demo_001",
+  "target_url": "http://localhost:3000",
+  "crawl_snapshot": {
+    "run_id": "run_20260323_001",
+    "contract_version": "v1",
+    "stage": "crawl",
+    "stage_version": "v1",
+    "base_url": "http://localhost:3000",
+    "page_count": 1,
+    "interactive_element_count": 3,
+    "pages": [
+      {
+        "url": "http://localhost:3000/login",
+        "title": "Signup / Login",
+        "elements": [
+          {
+            "type": "input",
+            "text": "Email Address",
+            "selector": "input[data-qa='login-email']",
+            "attributes": {},
+            "visible": true,
+            "interactive": true
+          },
+          {
+            "type": "input",
+            "text": "Password",
+            "selector": "input[data-qa='login-password']",
+            "attributes": {},
+            "visible": true,
+            "interactive": true
+          },
+          {
+            "type": "button",
+            "text": "Login",
+            "selector": "button[data-qa='login-button']",
+            "attributes": {},
+            "visible": true,
+            "interactive": true
+          }
+        ],
+        "links": []
+      }
+    ],
+    "timestamps": {
+      "started_at": "2026-03-23T10:00:10Z",
+      "completed_at": "2026-03-23T10:00:12Z"
+    }
+  },
+  "max_input_tokens": 6000,
+  "max_pages": 5,
+  "max_elements_per_page": 30
+}
